@@ -1,0 +1,12 @@
+{
+    "name": "Py2 Py3 Packages Workflow",
+    "description": "Template for testing and deploy python 2.7 and 3.7 packages.",
+    "iconName": "cloudshell_logo",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": [
+        "tox.ini",
+        ".pre-commit-config.yaml"
+    ]
+}

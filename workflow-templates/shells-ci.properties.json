@@ -1,0 +1,12 @@
+{
+    "name": "Shells Workflow",
+    "description": "Template for testing and deploy Shells.",
+    "iconName": "cloudshell_logo",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": [
+        "tox.ini",
+        ".pre-commit-config.yaml"
+    ]
+}

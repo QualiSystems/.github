@@ -8,7 +8,7 @@ on:
 jobs:
   download-linux-dependencies:
     runs-on: ubuntu-latest
-    name: download linux dependencies py ${{ inputs.py-version }}
+    name: linux dependencies py ${{ inputs.py-version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

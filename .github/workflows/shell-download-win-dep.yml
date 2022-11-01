@@ -8,7 +8,7 @@ on:
 jobs:
   download-windows-dependencies:
     runs-on: windows-2019
-    name: download windows dependencies py ${{ inputs.py-version }}
+    name: windows dependencies py ${{ inputs.py-version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

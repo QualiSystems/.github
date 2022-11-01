@@ -8,7 +8,17 @@ jobs:
     uses: ./.github/workflows/shell-tox-pack.yml
   download-linux-dep:
     uses: ./.github/workflows/shell-download-linux-dep.yml
+    strategy:
+      matrix:
+        py-version: [ "3.7", "3.9" ]
+    with:
+      py-version: ${{ matrix.py-version }}
   download-win-dep:
     uses: ./.github/workflows/shell-download-win-dep.yml
+    strategy:
+      matrix:
+        py-version: [ "3.7", "3.9" ]
+    with:
+      py-version: ${{ matrix.py-version }}
   validate-shell-name:
     uses: ./.github/workflows/shell-validate-name.yml

@@ -1,0 +1,25 @@
+name: download linux dependencies
+on:
+  workflow_call:
+    inputs:
+      py-version:
+        required: true
+        type: string
+jobs:
+  download-linux-dependencies:
+    runs-on: ubuntu-latest
+    name: download linux dependencies py ${{ inputs.py-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ inputs.py-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.py-version }}
+      - name: Download dependencies
+        run: pip download -r src/requirements.txt -d dependencies
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-dependencies
+          path: dependencies

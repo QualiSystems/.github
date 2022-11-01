@@ -1,0 +1,14 @@
+name: Shell CI
+on:
+  workflow_call:
+jobs:
+  pre-commit:
+    uses: ./.github/workflows/tox-pre-commit.yml
+  pack:
+    uses: ./.github/workflows/shell-tox-pack.yml
+  download-linux-dep:
+    uses: ./.github/workflows/shell-download-linux-dep.yml
+  download-win-dep:
+    uses: ./.github/workflows/shell-download-win-dep.yml
+  validate-shell-name:
+    uses: ./.github/workflows/shell-validate-name.yml

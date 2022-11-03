@@ -1,13 +1,24 @@
-name: tox CI
+name: github release
 on:
   workflow_call:
+    inputs:
+      update:
+        required: false
+        type: boolean
+        default: false
 jobs:
   create-gh-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install jq
+          python -m pip install pip -U
+          pip install tox yq
       - name: Pack Shell
+        if: ${{ inputs.update == false }}
         env:
           TOXENV: pack
         run: tox
@@ -31,6 +42,7 @@ jobs:
           echo "REPO=$repo" >> $GITHUB_ENV
       - name: Pack dependencies
         run: |
+          mkdir -p dist  # if we don't pack Shell the folder will not be created
           zip -j dist/cloudshell-$REPO-dependencies-win-package-$TAG.zip windows-dependencies/*
           zip -j dist/cloudshell-$REPO-dependencies-linux-package-$TAG.zip linux-dependencies/*
       - name: Create GitHub release
@@ -42,3 +54,8 @@ jobs:
           name: ${{ env.REPO }} ${{ env.TAG }}
           tag: ${{ env.TAG }}
           commit: master
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          updateOnlyUnreleased: ${{ inputs.update == false }}

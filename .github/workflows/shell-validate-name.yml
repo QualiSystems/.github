@@ -1,4 +1,3 @@
-name: validate the Shell name
 on:
   workflow_call:
 jobs:

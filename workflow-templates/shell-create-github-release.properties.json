@@ -1,6 +1,6 @@
 {
-    "name": "Shells Workflow",
-    "description": "Deprecated. Template for testing and deploy Shells.",
+    "name": "Create GitHub release for Shell",
+    "description": "Template for creating Shell's GitHub release.",
     "iconName": "cloudshell_logo",
     "categories": [
         "Python"

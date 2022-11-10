@@ -1,6 +1,6 @@
 {
-    "name": "Shells Workflow",
-    "description": "Deprecated. Template for testing and deploy Shells.",
+    "name": "Shell CI",
+    "description": "Template for Shell's CI.",
     "iconName": "cloudshell_logo",
     "categories": [
         "Python"

@@ -1,6 +1,6 @@
 {
-    "name": "Packages Workflow",
-    "description": "Deprecated. Template for testing and deploy python packages.",
+    "name": "Package GitHub release",
+    "description": "Template for package GitHub release",
     "iconName": "cloudshell_logo",
     "categories": [
         "Python"

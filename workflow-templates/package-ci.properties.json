@@ -1,6 +1,6 @@
 {
-    "name": "Packages Workflow",
-    "description": "Deprecated. Template for testing and deploy python packages.",
+    "name": "Package CI",
+    "description": "Template for package CI",
     "iconName": "cloudshell_logo",
     "categories": [
         "Python"

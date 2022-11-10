@@ -1,0 +1,9 @@
+{
+    "name": "Package check version",
+    "description": "Template for package check version.",
+    "iconName": "cloudshell_logo",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": ["version.txt"]
+}

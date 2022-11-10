@@ -1,0 +1,9 @@
+{
+    "name": "Shell check version",
+    "description": "Template for checking Shell's version.",
+    "iconName": "cloudshell_logo",
+    "categories": [
+        "Python"
+    ],
+    "filePatterns": ["shell-definition.yaml"]
+}

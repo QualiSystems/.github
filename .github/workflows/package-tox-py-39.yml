@@ -1,0 +1,14 @@
+on:
+  workflow_call:
+jobs:
+  pre-commit:
+    uses: ./.github/workflows/tox-pre-commit.yml
+  build:
+    uses: ./.github/workflows/tox-build.yml
+  tests:
+    strategy:
+      matrix:
+        py-version: [ "3.9" ]
+    uses: ./.github/workflows/package-tox-tests.yml
+    with:
+      py-version: ${{ matrix.py-version }}

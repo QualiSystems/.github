@@ -1,0 +1,24 @@
+jobs:
+  download-centos-dependencies-py37:
+    runs-on: ubuntu-latest
+    container: centos:7
+    name: centos dependencies py 37
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python 37
+        run: |
+          yum -y install wget make gcc openssl-devel bzip2-devel
+          wget https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz
+          tar xzf Python-3.9.9.tgz
+          cd Python-3.9.9
+          ./configure --enable-optimizations
+          make altinstall
+          cd ..
+      - name: Download dependencies
+        run: /usr/local/bin/pip3.9 download -r src/requirements.txt -d dependencies
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-dependencies
+          path: dependencies

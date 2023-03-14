@@ -16,6 +16,8 @@ jobs:
           ./configure --enable-optimizations
           make altinstall
           cd ..
+      - name: Update setuptools and pip
+        run: /usr/local/bin/pip3.7 install -U setuptools pip
       - name: Download dependencies
         run: /usr/local/bin/pip3.7 download -r src/requirements.txt -d dependencies
       - name: Upload artifacts

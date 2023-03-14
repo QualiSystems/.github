@@ -12,13 +12,13 @@ jobs:
         py-version: [ "3.7", "3.9" ]
     with:
       py-version: ${{ matrix.py-version }}
-  download-centos-dep:
-    uses: ./.github/workflows/shell-download-centos-dep.yml
-    strategy:
-      matrix:
-        py-version: [ "3.7", "3.9" ]
-    with:
-      py-version: ${{ matrix.py-version }}
+#  download-centos-dep:
+#    uses: ./.github/workflows/shell-download-centos-dep.yml
+#    strategy:
+#      matrix:
+#        py-version: [ "3.7", "3.9" ]
+#    with:
+#      py-version: ${{ matrix.py-version }}
   download-win-dep:
     uses: ./.github/workflows/shell-download-win-dep.yml
     strategy:

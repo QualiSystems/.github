@@ -1,13 +1,13 @@
 on: workflow_call
 jobs:
-  download-centos-dependencies-py37:
+  download-centos-dependencies-py39:
     runs-on: ubuntu-latest
     container: centos:7
-    name: centos dependencies py 37
+    name: centos dependencies py 39
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Python 37
+      - name: Set up Python 39
         run: |
           yum -y install wget make gcc openssl-devel bzip2-devel
           wget https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz

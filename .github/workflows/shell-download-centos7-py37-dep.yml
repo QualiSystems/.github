@@ -1,3 +1,4 @@
+on: workflow_call
 jobs:
   download-centos-dependencies-py37:
     runs-on: ubuntu-latest

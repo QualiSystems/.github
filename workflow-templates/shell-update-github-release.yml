@@ -11,7 +11,6 @@ jobs:
     uses: QualiSystems/.github/.github/workflows/shell-py-37-39.yml@master
     with:
       run-pre-commit: false
-      ref: ${{ inputs.ref }}
   github-release:
     needs: shell-ci
     uses: QualiSystems/.github/.github/workflows/shell-github-release.yml@master

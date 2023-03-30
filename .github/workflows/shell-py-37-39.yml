@@ -5,26 +5,16 @@ on:
         required: false
         type: boolean
         default: true
-      ref:
-        required: false
-        type: string
-        default: ${{ github.ref }}
 jobs:
   pre-commit:
     if: ${{ inputs.run-pre-commit == true }}
     uses: ./.github/workflows/tox-pre-commit.yml
   pack:
     uses: ./.github/workflows/shell-tox-pack.yml
-    with:
-      ref: ${{ inputs.ref }}
   download-centos-py37-dep:
     uses: ./.github/workflows/shell-download-centos7-py37-dep.yml
-    with:
-      ref: ${{ inputs.ref }}
   download-centos-py39-dep:
     uses: ./.github/workflows/shell-download-centos7-py39-dep.yml
-    with:
-      ref: ${{ inputs.ref }}
   download-linux-dep:
     uses: ./.github/workflows/shell-download-linux-dep.yml
     strategy:
@@ -32,7 +22,6 @@ jobs:
         py-version: [ "3.7", "3.9" ]
     with:
       py-version: ${{ matrix.py-version }}
-      ref: ${{ inputs.ref }}
   download-win-dep:
     uses: ./.github/workflows/shell-download-win-dep.yml
     strategy:
@@ -40,6 +29,5 @@ jobs:
         py-version: [ "3.7", "3.9" ]
     with:
       py-version: ${{ matrix.py-version }}
-      ref: ${{ inputs.ref }}
   validate-shell-name:
     uses: ./.github/workflows/shell-validate-name.yml

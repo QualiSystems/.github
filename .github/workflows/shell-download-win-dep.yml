@@ -4,6 +4,10 @@ on:
       py-version:
         required: true
         type: string
+      ref:
+        required: false
+        type: string
+        default: ${{ github.ref }}
 jobs:
   download-windows-dependencies:
     runs-on: windows-2019
@@ -11,6 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref }}
       - name: Set up Python ${{ inputs.py-version }}
         uses: actions/setup-python@v4
         with:

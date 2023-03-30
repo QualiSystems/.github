@@ -1,4 +1,10 @@
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+        default: ${{ github.ref }}
 jobs:
   download-centos-dependencies-py39:
     runs-on: ubuntu-latest
@@ -7,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref }}
       - name: Set up Python 39
         run: |
           yum -y install wget make gcc openssl-devel bzip2-devel

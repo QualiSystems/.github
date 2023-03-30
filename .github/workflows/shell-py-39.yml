@@ -11,8 +11,12 @@ jobs:
     uses: ./.github/workflows/tox-pre-commit.yml
   pack:
     uses: ./.github/workflows/shell-tox-pack.yml
+    with:
+      ref: ${{ github.ref }}
   download-centos-py39-dep:
     uses: ./.github/workflows/shell-download-centos7-py39-dep.yml
+    with:
+      ref: ${{ github.ref }}
   download-linux-dep:
     uses: ./.github/workflows/shell-download-linux-dep.yml
     strategy:
@@ -20,6 +24,7 @@ jobs:
         py-version: [ "3.9" ]
     with:
       py-version: ${{ matrix.py-version }}
+      ref: ${{ github.ref }}
   download-win-dep:
     uses: ./.github/workflows/shell-download-win-dep.yml
     strategy:
@@ -27,5 +32,6 @@ jobs:
         py-version: [ "3.9" ]
     with:
       py-version: ${{ matrix.py-version }}
+      ref: ${{ github.ref }}
   validate-shell-name:
     uses: ./.github/workflows/shell-validate-name.yml

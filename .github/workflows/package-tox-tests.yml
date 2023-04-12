@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: ${{ inputs.py-version }}
       - name: Install dependencies
-        run: pip install tox codecov
+        run: pip install tox coverage
       - name: Set TOXENV
         run: |
           python_version="${{ inputs.py-version }}"

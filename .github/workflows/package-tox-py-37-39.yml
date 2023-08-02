@@ -3,8 +3,12 @@ on:
 jobs:
   pre-commit:
     uses: ./.github/workflows/tox-pre-commit.yml
+    with:
+      py-version: "3.9"
   build:
     uses: ./.github/workflows/tox-build.yml
+    with:
+      py-version: "3.9"
   tests:
     strategy:
       matrix:

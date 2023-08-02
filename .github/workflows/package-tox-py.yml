@@ -1,0 +1,25 @@
+on:
+  workflow_call:
+    inputs:
+      pre-commit-py-version:
+        required: true
+        type: string
+      build-py-version:
+        required: true
+        type: string
+      tests-py-version:
+        required: true
+        type: string
+jobs:
+  pre-commit:
+    uses: ./.github/workflows/tox-pre-commit.yml
+    with:
+      py-version: ${{ inputs.pre-commit-py-version }}
+  build:
+    uses: ./.github/workflows/tox-build.yml
+    with:
+      py-version: ${{ inputs.build-py-version }}
+  tests:
+    uses: ./.github/workflows/package-tox-tests.yml
+    with:
+      py-version: ${{ inputs.tests-py-version }}

@@ -23,3 +23,7 @@ jobs:
     uses: ./.github/workflows/package-tox-tests.yml
     with:
       py-version: ${{ inputs.tests-py-version }}
+  mypy:
+    uses: ./.github/workflows/tox-mypy.yml
+    with:
+      py-version: ${{ inputs.tests-py-version }}

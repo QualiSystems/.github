@@ -1,0 +1,32 @@
+on:
+  workflow_call:
+    inputs:
+      py-version:
+        required: true
+        type: string
+jobs:
+  mypy:
+    runs-on: ubuntu-latest
+    name: mypy ${{ inputs.py-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Check mypy is present in tox
+        run: |
+          if grep -q "^\[testenv:mypy\]" tox.ini; then
+            echo "mypy environment found in tox.ini"
+          else
+            echo "mypy environment not found in tox.ini"
+            gh run cancel ${{ github.run_id }}
+            gh run watch ${{ github.run_id }}
+          fi
+      - name: Set up Python ${{ inputs.py-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.py-version }}
+      - name: Install dependencies
+        run: pip install tox
+      - name: mypy
+        env:
+          TOXENV: mypy
+        run: tox

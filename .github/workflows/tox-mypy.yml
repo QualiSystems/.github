@@ -12,6 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check mypy is present in tox
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if grep -q "^\[testenv:mypy\]" tox.ini; then
             echo "mypy environment found in tox.ini"

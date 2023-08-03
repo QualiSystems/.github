@@ -5,23 +5,30 @@ on:
         required: true
         type: string
 jobs:
-  mypy:
+  check-mypy-present:
+    name: check mypy present
     runs-on: ubuntu-latest
-    name: mypy ${{ inputs.py-version }}
+    outputs:
+      mypy-present: ${{ steps.check-mypy.outputs.mypy-present }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check mypy is present in tox
-        env:
-          GH_TOKEN: ${{ github.token }}
+        id: check-mypy
         run: |
           if grep -q "^\[testenv:mypy\]" tox.ini; then
             echo "mypy environment found in tox.ini"
+            echo "mypy-present=true" >> "$GITHUB_OUTPUT"
           else
             echo "mypy environment not found in tox.ini"
-            gh run cancel ${{ github.run_id }}
-            gh run watch ${{ github.run_id }}
+            echo "mypy-present=false" >> "$GITHUB_OUTPUT"
           fi
+  mypy:
+    name: check mypy ${{ inputs.py-version }}
+    runs-on: ubuntu-latest
+    needs: check-mypy-present
+    if: needs.check-mypy-present.outputs.mypy-present == 'true'
+    steps:
       - name: Set up Python ${{ inputs.py-version }}
         uses: actions/setup-python@v4
         with:

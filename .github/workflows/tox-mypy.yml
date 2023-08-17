@@ -24,11 +24,13 @@ jobs:
             echo "mypy-present=false" >> "$GITHUB_OUTPUT"
           fi
   mypy:
-    name: check mypy ${{ inputs.py-version }}
+    name: mypy ${{ inputs.py-version }}
     runs-on: ubuntu-latest
     needs: check-mypy-present
     if: needs.check-mypy-present.outputs.mypy-present == 'true'
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Set up Python ${{ inputs.py-version }}
         uses: actions/setup-python@v4
         with:

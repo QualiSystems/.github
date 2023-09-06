@@ -10,6 +10,10 @@ on:
       tests-py-version:
         required: true
         type: string
+      upload-coverage:
+        required: false
+        type: boolean
+        default: true
 jobs:
   pre-commit:
     uses: ./.github/workflows/tox-pre-commit.yml
@@ -23,6 +27,7 @@ jobs:
     uses: ./.github/workflows/package-tox-tests.yml
     with:
       py-version: ${{ inputs.tests-py-version }}
+      upload-coverage: ${{ inputs.upload-coverage }}
   mypy:
     uses: ./.github/workflows/tox-mypy.yml
     with:

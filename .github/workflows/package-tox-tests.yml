@@ -4,6 +4,10 @@ on:
       py-version:
         required: true
         type: string
+      upload-coverage:
+        required: false
+        type: boolean
+        default: true
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -35,6 +39,7 @@ jobs:
       - name: Run tox
         run: tox
       - name: Upload coverage report
+        if: ${{ inputs.upload-coverage }}
         uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true

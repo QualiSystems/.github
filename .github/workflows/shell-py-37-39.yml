@@ -9,6 +9,8 @@ jobs:
   pre-commit:
     if: ${{ inputs.run-pre-commit == true }}
     uses: ./.github/workflows/tox-pre-commit.yml
+    with:
+      py-version: "3.9"
   pack:
     uses: ./.github/workflows/shell-tox-pack.yml
   download-centos-py37-dep:

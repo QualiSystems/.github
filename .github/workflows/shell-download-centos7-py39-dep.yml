@@ -6,7 +6,7 @@ jobs:
     name: centos dependencies py 39
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python 39
         run: |
           yum -y install wget make gcc openssl-devel bzip2-devel libffi-devel

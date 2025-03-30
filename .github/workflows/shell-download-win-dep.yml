@@ -19,7 +19,7 @@ jobs:
       - name: Download dependencies
         run: pip download -r src/requirements.txt -d dependencies
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-dependencies
           path: dependencies

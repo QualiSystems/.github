@@ -26,7 +26,7 @@ jobs:
       - name: Download dependencies
         run: /usr/local/bin/pip3.9 download -r src/requirements.txt -d dependencies
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-dependencies
           path: dependencies
